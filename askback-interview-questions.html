@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AskBack — Smart Interview Questions</title>
+  <meta name="description" content="The definitive guide to asking smart, high-impact questions when an interviewer says 'Do you have any questions?'" />
+  <meta name="keywords" content="interview questions, job interview, candidate questions, engineering interview" />
+  <meta property="og:title" content="AskBack — Smart Interview Questions" />
+  <meta property="og:description" content="Turn the table. Ask questions that make you memorable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   AskBack — Stylesheet
+   Dark editorial aesthetic | Playfair Display + DM Sans
+   ============================================================ */
+
+:root {
+  --bg: #0d0d0d;
+  --bg-2: #141414;
+  --bg-3: #1c1c1c;
+  --bg-4: #242424;
+  --border: #2a2a2a;
+  --border-light: #333;
+  --text: #f0ede8;
+  --text-2: #9a9590;
+  --text-3: #5c5955;
+  --accent: #d4a843;
+  --accent-dim: rgba(212, 168, 67, 0.12);
+  --accent-glow: rgba(212, 168, 67, 0.25);
+  --danger: #e05555;
+  --danger-dim: rgba(224, 85, 85, 0.1);
+  --success: #4aad7c;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.6);
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  --bg: #faf9f7;
+  --bg-2: #f3f1ee;
+  --bg-3: #ebe8e4;
+  --bg-4: #e0ddd8;
+  --border: #dedad5;
+  --border-light: #ccc8c2;
+  --text: #1a1815;
+  --text-2: #5c5955;
+  --text-3: #9a9590;
+  --accent: #b8890f;
+  --accent-dim: rgba(184, 137, 15, 0.10);
+  --accent-glow: rgba(184, 137, 15, 0.2);
+  --danger: #c0392b;
+  --danger-dim: rgba(192, 57, 43, 0.08);
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: var(--font-body); border: none; background: none; }
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── NAV ───────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+[data-theme="light"] .nav {
+  background: rgba(250, 249, 247, 0.88);
+}
+
+.nav.scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.nav-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.logo-dot { color: var(--accent); }
+
+.nav-search-wrap {
+  flex: 1;
+  max-width: 340px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 1.1rem;
+  color: var(--text-3);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.nav-search {
+  width: 100%;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px 8px 34px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.nav-search::placeholder { color: var(--text-3); }
+.nav-search:focus {
+  border-color: var(--accent);
+  background: var(--bg-4);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.theme-toggle {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-2);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-4);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.nav-cta {
+  background: var(--accent);
+  color: #0d0d0d;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 8px 18px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: opacity var(--transition), transform var(--transition);
+  flex-shrink: 0;
+}
+
+.nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ── HERO ───────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 80% 80% at 20% 40%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 20% 40%, black 30%, transparent 80%);
+}
+
+.hero .container { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.eyebrow-pill {
+  display: inline-block;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-glow);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  max-width: 720px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  margin-top: 24px;
+  max-width: 540px;
+  font-size: 1.1rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+.inline-quote {
+  display: inline;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--bg-3);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 1px 7px;
+  color: var(--accent);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent);
+  color: #0d0d0d;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 13px 28px;
+  border-radius: var(--radius);
+  transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--text-2);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 13px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  transition: border-color var(--transition), color var(--transition), transform var(--transition);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 60px;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+
+.stat { display: flex; flex-direction: column; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent);
+}
+.stat-label { font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-light);
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* ── SECTIONS ───────────────────────────────────────── */
+.section {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-header {
+  margin-bottom: 56px;
+  max-width: 600px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.section-sub {
+  margin-top: 14px;
+  color: var(--text-2);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ── WHY CARDS ──────────────────────────────────────── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.why-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.why-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.why-icon {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.why-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.why-card p {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+/* ── FILTER TABS ────────────────────────────────────── */
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.tab {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 100px;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0d0d0d;
+  font-weight: 700;
+}
+
+/* ── Q GROUPS & CARDS ───────────────────────────────── */
+.questions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.q-group { display: flex; flex-direction: column; gap: 16px; }
+.q-group.hidden { display: none; }
+
+.q-group-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.q-group-icon { font-size: 1rem; }
+
+.q-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+}
+
+.q-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.q-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.q-card:hover {
+  border-color: var(--border-light);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.q-card:hover::before { opacity: 1; }
+
+.q-card.hidden { display: none; }
+
+.q-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.q-card-question {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  flex: 1;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-3);
+  transition: all var(--transition);
+}
+
+.copy-btn:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copy-btn.copied {
+  background: rgba(74, 173, 124, 0.15);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.q-card-body {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeUp 0.3s ease both;
+}
+
+.q-card-body.open { display: flex; }
+
+.q-card-why {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  background: var(--accent-dim);
+  border-left: 2px solid var(--accent);
+  padding: 10px 12px;
+  border-radius: 0 6px 6px 0;
+}
+
+.q-card-when {
+  font-size: 0.8rem;
+  color: var(--text-3);
+  font-style: italic;
+}
+
+.q-card-when span {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.expand-btn {
+  align-self: flex-start;
+  font-size: 0.78rem;
+  color: var(--text-3);
+  font-weight: 500;
+  transition: color var(--transition);
+  padding: 2px 0;
+}
+
+.expand-btn:hover { color: var(--accent); }
+.expand-btn.open { color: var(--accent); }
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-3);
+  font-size: 1rem;
+  background: var(--bg-2);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.hidden { display: none; }
+
+/* ── MISTAKES ───────────────────────────────────────── */
+.mistakes-section { background: var(--bg-2); }
+
+.mistakes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.mistake-card {
+  background: var(--danger-dim);
+  border: 1px solid rgba(224, 85, 85, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  position: relative;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.mistake-card:hover {
+  border-color: rgba(224, 85, 85, 0.5);
+  transform: translateY(-2px);
+}
+
+.mistake-badge {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.mistake-q {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--danger);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.mistake-card p {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ── COMBOS ─────────────────────────────────────────── */
+.combos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.combo-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.combo-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.combo-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.combo-qs {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.combo-q {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.combo-num {
+  width: 24px; height: 24px;
+  background: var(--accent);
+  color: #0d0d0d;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.combo-q span:last-child {
+  font-size: 0.875rem;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.combo-arrow {
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 700;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.combo-why {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.65;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── TIPS ───────────────────────────────────────────── */
+.tips-section { background: var(--bg); }
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tip-item {
+  display: flex;
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+  transition: background var(--transition);
+}
+
+.tip-item:first-child { border-top: 1px solid var(--border); }
+
+.tip-num {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--border-light);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 72px;
+  transition: color var(--transition);
+}
+
+.tip-item:hover .tip-num { color: var(--accent); }
+
+.tip-content { flex: 1; }
+
+.tip-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.tip-content p {
+  font-size: 0.95rem;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.tip-example {
+  margin-top: 18px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.tip-example-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.tip-dialogue {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tip-line {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.tip-line.interviewer {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+}
+
+.tip-line.you {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-glow);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.tip-line em { color: var(--accent); }
+
+/* ── FOOTER ─────────────────────────────────────────── */
+.footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: 60px 0 32px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.footer-brand { max-width: 260px; }
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  font-size: 0.875rem;
+  color: var(--text-3);
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.footer-col a {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  transition: color var(--transition);
+}
+
+.footer-col a:hover { color: var(--accent); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-3);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── TOAST ───────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--success);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 100px;
+  box-shadow: 0 4px 20px rgba(74, 173, 124, 0.35);
+  z-index: 999;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ── FADE-IN ANIMATION ───────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── KEYFRAMES ───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-search-wrap { display: none; }
+
+  .hero { padding: 100px 0 60px; min-height: auto; }
+  .hero-title { font-size: 2.4rem; }
+  .hero-stats { gap: 18px; }
+  .stat-num { font-size: 1.8rem; }
+
+  .section { padding: 64px 0; }
+
+  .q-cards { grid-template-columns: 1fr; }
+
+  .combo-qs { flex-direction: column; }
+  .combo-arrow { transform: rotate(90deg); align-self: center; }
+
+  .tip-item { flex-direction: column; gap: 12px; }
+  .tip-num { font-size: 2.2rem; width: auto; }
+
+  .footer-inner { flex-direction: column; }
+  .footer-links { flex-direction: column; gap: 28px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .nav-inner { gap: 12px; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+  .hero-stats { flex-wrap: wrap; }
+  .why-grid { grid-template-columns: 1fr; }
+  .mistakes-grid { grid-template-columns: 1fr; }
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── SELECTION ───────────────────────────────────────── */
+::selection {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">AskBack<span class="logo-dot">.</span></a>
+      <div class="nav-search-wrap">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="globalSearch" class="nav-search" placeholder="Search questions…" autocomplete="off" />
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="theme-icon">☀</span>
+        </button>
+        <a href="hr-interview-guide.html" class="nav-cta" style="background: transparent; color: var(--text-2); border: 1px solid var(--border); margin-right: 8px;">← HR Mastery</a>
+        <a href="#questions" class="nav-cta">Explore →</a>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg-grid"></div>
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-pill">Interview Playbook</span>
+      </div>
+      <h1 class="hero-title">
+        Smart Questions<br />
+        <em>to Ask at the End</em><br />
+        of an Interview.
+      </h1>
+      <p class="hero-sub">
+        When the interviewer says <span class="inline-quote">"Do you have any questions?"</span> — most candidates freeze.
+        The best ones flip the conversation. Here's exactly what to ask.
+      </p>
+      <div class="hero-actions">
+        <a href="#questions" class="btn-primary">Explore Questions</a>
+        <a href="#why" class="btn-ghost">Why it matters ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">40+</span><span class="stat-label">Questions</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Categories</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">Smart Combos</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">scroll</div>
+  </section>
+
+  <!-- WHY THIS MATTERS -->
+  <section class="section why-section" id="why">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Why It Matters</span>
+        <h2 class="section-title">Silence is the <em>worst</em> answer.</h2>
+        <p class="section-sub">Saying "No, I'm good" signals disinterest, lack of preparation, and missed opportunity.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card fade-in">
+          <div class="why-icon">⚡</div>
+          <h3>Shows Genuine Interest</h3>
+          <p>Thoughtful questions prove you've researched the role, team, and company — not just applied to every posting.</p>
+        </div>
+        <div class="why-card fade-in">
+          <div class="why-icon">🧭</div>
+          <h3>Reveals Your Priorities</h3>
+          <p>What you ask signals your values. Architecture questions show depth. Culture questions show self-awareness.</p>
+        </div>
+        <div class="why-card fade-in">
+          <div class="why-icon">🎯</div>
+          <h3>Differentiates You</h3>
+          <p>Most candidates ask generic questions. Sharp, specific questions make you memorable long after the call ends.</p>
+        </div>
+        <div class="why-card fade-in">
+          <div class="why-icon">🔍</div>
+          <h3>Helps You Evaluate Them</h3>
+          <p>You're interviewing them too. Great questions uncover red flags, culture fit, and growth potential.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS MAIN -->
+  <section class="section questions-section" id="questions">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">High-Impact Questions</span>
+        <h2 class="section-title">Ask these.<br/><em>Be remembered.</em></h2>
+      </div>
+
+      <!-- FILTER TABS -->
+      <div class="filter-tabs" id="filterTabs">
+        <button class="tab active" data-cat="all">All</button>
+        <button class="tab" data-cat="role">Role & Expectations</button>
+        <button class="tab" data-cat="system">System Design</button>
+        <button class="tab" data-cat="engineering">Engineering Practices</button>
+        <button class="tab" data-cat="production">Production & Debugging</button>
+        <button class="tab" data-cat="growth">Growth & Ownership</button>
+        <button class="tab" data-cat="culture">Team & Culture</button>
+      </div>
+
+      <div id="noResults" class="no-results hidden">
+        <span>No questions match your search.</span>
+      </div>
+
+      <!-- QUESTION CARDS -->
+      <div class="questions-grid" id="questionsGrid">
+
+        <!-- ROLE & EXPECTATIONS -->
+        <div class="q-group" data-cat="role">
+          <div class="q-group-label">
+            <span class="q-group-icon">🎯</span>Role & Expectations
+          </div>
+          <div class="q-cards">
+
+            <div class="q-card" data-question="What does success look like in this role at 30, 60, and 90 days?">
+              <div class="q-card-header">
+                <span class="q-card-question">What does success look like in this role at 30, 60, and 90 days?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Forces clarity on expectations. If they can't answer, that's a red flag.</div>
+                <div class="q-card-when">Best asked to: <span>Hiring manager</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="How did the team arrive at the current priorities for this role?">
+              <div class="q-card-header">
+                <span class="q-card-question">How did the team arrive at the current priorities for this role?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Reveals decision-making culture and whether this role has a clear mandate.</div>
+                <div class="q-card-when">Best asked to: <span>Team lead / EM</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="What are the biggest challenges someone in this role would face in the first six months?">
+              <div class="q-card-header">
+                <span class="q-card-question">What are the biggest challenges someone in this role would face in the first six months?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Shows maturity. You're not pretending it'll be easy — you want to be prepared.</div>
+                <div class="q-card-when">Best asked to: <span>Hiring manager</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="Is this a new role or a backfill? What happened to the previous person?">
+              <div class="q-card-header">
+                <span class="q-card-question">Is this a new role or a backfill? What happened to the previous person?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Uncovers the real story. High turnover or vague answers are warning signs.</div>
+                <div class="q-card-when">Best asked to: <span>Recruiter / EM</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SYSTEM DESIGN -->
+        <div class="q-group" data-cat="system">
+          <div class="q-group-label">
+            <span class="q-group-icon">🏗</span>System Design & Architecture
+          </div>
+          <div class="q-cards">
+
+            <div class="q-card" data-question="What does your current architecture look like at a high level? Are there known pain points you're actively addressing?">
+              <div class="q-card-header">
+                <span class="q-card-question">What does your current architecture look like at a high level? Are there known pain points you're actively addressing?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Engineers love talking architecture. Reveals technical debt awareness and honesty.</div>
+                <div class="q-card-when">Best asked to: <span>Senior engineer / Tech lead</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="How do you make decisions about adopting new technologies vs. standardizing on existing ones?">
+              <div class="q-card-header">
+                <span class="q-card-question">How do you make decisions about adopting new technologies vs. standardizing on existing ones?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Surfaces maturity around tech selection and whether it's driven by hype or pragmatism.</div>
+                <div class="q-card-when">Best asked to: <span>Principal / Staff engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="Where are the scalability bottlenecks in your system today, and how are you tackling them?">
+              <div class="q-card-header">
+                <span class="q-card-question">Where are the scalability bottlenecks in your system today, and how are you tackling them?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Shows you think at scale. The answer also tells you what you'd be working on.</div>
+                <div class="q-card-when">Best asked to: <span>Senior engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="How do you handle data consistency across distributed services?">
+              <div class="q-card-header">
+                <span class="q-card-question">How do you handle data consistency across distributed services?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Tests the team's distributed systems depth. Vague answers = potential chaos.</div>
+                <div class="q-card-when">Best asked to: <span>Tech lead / Architect</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ENGINEERING PRACTICES -->
+        <div class="q-group" data-cat="engineering">
+          <div class="q-group-label">
+            <span class="q-group-icon">⚙️</span>Engineering Practices
+          </div>
+          <div class="q-cards">
+
+            <div class="q-card" data-question="What does your code review process look like? How long do PRs typically sit before review?">
+              <div class="q-card-header">
+                <span class="q-card-question">What does your code review process look like? How long do PRs typically sit before review?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> PR velocity is a proxy for team collaboration health. Long queues = bottlenecks or siloing.</div>
+                <div class="q-card-when">Best asked to: <span>Engineer on the team</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="How do you manage technical debt? Is there dedicated time for it each sprint?">
+              <div class="q-card-header">
+                <span class="q-card-question">How do you manage technical debt? Is there dedicated time for it each sprint?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Teams that ignore tech debt move fast — until they don't. Good signal of engineering maturity.</div>
+                <div class="q-card-when">Best asked to: <span>EM / Senior engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="What does your testing philosophy look like? What's your coverage culture?">
+              <div class="q-card-header">
+                <span class="q-card-question">What does your testing philosophy look like? What's your coverage culture?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Testing culture predicts code quality, on-call burden, and release confidence.</div>
+                <div class="q-card-when">Best asked to: <span>Any engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="How often do you ship to production? What does your CI/CD pipeline look like?">
+              <div class="q-card-header">
+                <span class="q-card-question">How often do you ship to production? What does your CI/CD pipeline look like?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Deployment frequency is a DORA key metric. Reveals how agile the team actually is.</div>
+                <div class="q-card-when">Best asked to: <span>DevOps / Senior engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="Do engineers write RFCs or ADRs before major changes? How are technical decisions documented?">
+              <div class="q-card-header">
+                <span class="q-card-question">Do engineers write RFCs or ADRs before major changes? How are technical decisions documented?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Shows you value documentation and async collaboration — huge signal of seniority.</div>
+                <div class="q-card-when">Best asked to: <span>Tech lead</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PRODUCTION & DEBUGGING -->
+        <div class="q-group" data-cat="production">
+          <div class="q-group-label">
+            <span class="q-group-icon">🔥</span>Production & Debugging
+          </div>
+          <div class="q-cards">
+
+            <div class="q-card" data-question="What does your on-call rotation look like? How many incidents happen per month on average?">
+              <div class="q-card-header">
+                <span class="q-card-question">What does your on-call rotation look like? How many incidents happen per month on average?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> On-call burden directly affects your quality of life. High incident rate = instability.</div>
+                <div class="q-card-when">Best asked to: <span>EM / Engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="Can you walk me through a recent production incident and how your team handled it?">
+              <div class="q-card-header">
+                <span class="q-card-question">Can you walk me through a recent production incident and how your team handled it?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> How a team handles incidents reveals blameless culture vs. blame culture instantly.</div>
+                <div class="q-card-when">Best asked to: <span>Senior engineer / EM</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="What observability stack do you use? How do you monitor system health?">
+              <div class="q-card-header">
+                <span class="q-card-question">What observability stack do you use? How do you monitor system health?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Metrics, logs, traces. If they have none, production is a mystery box.</div>
+                <div class="q-card-when">Best asked to: <span>DevOps / SRE / Engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="What's your post-mortem process after incidents? Is it blameless?">
+              <div class="q-card-header">
+                <span class="q-card-question">What's your post-mortem process after incidents? Is it blameless?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Blameless culture = psychological safety. The answer reveals team maturity.</div>
+                <div class="q-card-when">Best asked to: <span>EM / Tech lead</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- GROWTH & OWNERSHIP -->
+        <div class="q-group" data-cat="growth">
+          <div class="q-group-label">
+            <span class="q-group-icon">🚀</span>Growth & Ownership
+          </div>
+          <div class="q-cards">
+
+            <div class="q-card" data-question="How does the engineering leveling and promotion process work here?">
+              <div class="q-card-header">
+                <span class="q-card-question">How does the engineering leveling and promotion process work here?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Vague answers signal opaque politics. Clear rubrics = fair growth.</div>
+                <div class="q-card-when">Best asked to: <span>EM / HR</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="What's the biggest project this team could hand me ownership of in 12 months?">
+              <div class="q-card-header">
+                <span class="q-card-question">What's the biggest project this team could hand me ownership of in 12 months?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Shows ambition and long-term thinking. Interviewers remember this.</div>
+                <div class="q-card-when">Best asked to: <span>Hiring manager</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="Do engineers here get time for side projects, open-source, or conference talks?">
+              <div class="q-card-header">
+                <span class="q-card-question">Do engineers here get time for side projects, open-source, or conference talks?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Signals you care about craft beyond the job. Also reveals how the company invests in engineers.</div>
+                <div class="q-card-when">Best asked to: <span>Any engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="What have been the career trajectories of engineers who joined at my level in the past 2–3 years?">
+              <div class="q-card-header">
+                <span class="q-card-question">What have been the career trajectories of engineers who joined at my level in the past 2–3 years?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Real data beats promises. If they can't name examples, that's telling.</div>
+                <div class="q-card-when">Best asked to: <span>EM / Recruiter</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TEAM & CULTURE -->
+        <div class="q-group" data-cat="culture">
+          <div class="q-group-label">
+            <span class="q-group-icon">🤝</span>Team & Culture
+          </div>
+          <div class="q-cards">
+
+            <div class="q-card" data-question="What does the team's communication style look like — async-first or heavy on meetings?">
+              <div class="q-card-header">
+                <span class="q-card-question">What does the team's communication style look like — async-first or heavy on meetings?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Meeting culture directly affects your deep work time and sanity.</div>
+                <div class="q-card-when">Best asked to: <span>Any team member</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="How does the team handle disagreements on technical direction?">
+              <div class="q-card-header">
+                <span class="q-card-question">How does the team handle disagreements on technical direction?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Reveals psychological safety and conflict resolution maturity. No disagreements = echo chamber.</div>
+                <div class="q-card-when">Best asked to: <span>Engineer / Tech lead</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="What's one thing you genuinely wish was different about working here?">
+              <div class="q-card-header">
+                <span class="q-card-question">What's one thing you genuinely wish was different about working here?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Disarms corporate filters. You'll get authentic, candid answers. Most memorable question you can ask.</div>
+                <div class="q-card-when">Best asked to: <span>Engineer (not EM)</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="How does your team celebrate wins? How do you handle failure?">
+              <div class="q-card-header">
+                <span class="q-card-question">How does your team celebrate wins? How do you handle failure?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> Culture is revealed at extremes — how people act after a big win and a tough loss.</div>
+                <div class="q-card-when">Best asked to: <span>Team member</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+            <div class="q-card" data-question="If you could change one thing about how this team operates, what would it be?">
+              <div class="q-card-header">
+                <span class="q-card-question">If you could change one thing about how this team operates, what would it be?</span>
+                <button class="copy-btn" title="Copy question">⎘</button>
+              </div>
+              <div class="q-card-body">
+                <div class="q-card-why"><strong>Why it works:</strong> A variant on the candid question. Great for panel interviews with multiple engineers.</div>
+                <div class="q-card-when">Best asked to: <span>Engineer</span></div>
+              </div>
+              <button class="expand-btn">Expand ↓</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- end questions grid -->
+    </div>
+  </section>
+
+  <!-- MISTAKES TO AVOID -->
+  <section class="section mistakes-section" id="mistakes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What Not to Ask</span>
+        <h2 class="section-title">Questions that <em>hurt</em> you.</h2>
+        <p class="section-sub">These signal entitlement, lack of research, or disinterest. Avoid them completely.</p>
+      </div>
+      <div class="mistakes-grid">
+        <div class="mistake-card fade-in">
+          <div class="mistake-badge">❌</div>
+          <div class="mistake-q">"So… what does your company do?"</div>
+          <p>You should have researched this before applying. Asking this shows you didn't bother.</p>
+        </div>
+        <div class="mistake-card fade-in">
+          <div class="mistake-badge">❌</div>
+          <div class="mistake-q">"How many vacation days do I get?"</div>
+          <p>Save comp & benefits for an offer stage. Asking too early signals you care more about time off than the role.</p>
+        </div>
+        <div class="mistake-card fade-in">
+          <div class="mistake-badge">❌</div>
+          <div class="mistake-q">"Do I have to work weekends?"</div>
+          <p>Immediately raises concerns about your work ethic and commitment, even if the concern is valid.</p>
+        </div>
+        <div class="mistake-card fade-in">
+          <div class="mistake-badge">❌</div>
+          <div class="mistake-q">"Will I get to work on AI/blockchain/etc.?"</div>
+          <p>Tech-specific FOMO questions suggest you're chasing hype, not solving real problems.</p>
+        </div>
+        <div class="mistake-card fade-in">
+          <div class="mistake-badge">❌</div>
+          <div class="mistake-q">"When will I hear back?" (as your only question)</div>
+          <p>Using your question slot only to ask about the process signals you have no real curiosity about the role.</p>
+        </div>
+        <div class="mistake-card fade-in">
+          <div class="mistake-badge">❌</div>
+          <div class="mistake-q">"No, I think I'm good!"</div>
+          <p>The worst possible answer. Even one thoughtful question is infinitely better than silence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SMART COMBOS -->
+  <section class="section combos-section" id="combos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Smart Combos</span>
+        <h2 class="section-title">Questions that <em>pair</em> perfectly.</h2>
+        <p class="section-sub">Use these 2–3 question sequences to create a memorable, flowing conversation.</p>
+      </div>
+      <div class="combos-grid">
+        <div class="combo-card fade-in">
+          <div class="combo-label">Combo 1 — The Architecture Deep Dive</div>
+          <div class="combo-qs">
+            <div class="combo-q">
+              <span class="combo-num">1</span>
+              <span>"What does your current architecture look like at a high level?"</span>
+            </div>
+            <div class="combo-arrow">→</div>
+            <div class="combo-q">
+              <span class="combo-num">2</span>
+              <span>"Where are the known scalability bottlenecks, and how are you addressing them?"</span>
+            </div>
+            <div class="combo-arrow">→</div>
+            <div class="combo-q">
+              <span class="combo-num">3</span>
+              <span>"How do you make decisions about adopting new technologies?"</span>
+            </div>
+          </div>
+          <div class="combo-why">This sequence creates a natural conversation flow. You'll get a whiteboard architecture session in a Q&A format — and interviewers love it.</div>
+        </div>
+
+        <div class="combo-card fade-in">
+          <div class="combo-label">Combo 2 — The Culture Litmus Test</div>
+          <div class="combo-qs">
+            <div class="combo-q">
+              <span class="combo-num">1</span>
+              <span>"Can you walk me through a recent production incident?"</span>
+            </div>
+            <div class="combo-arrow">→</div>
+            <div class="combo-q">
+              <span class="combo-num">2</span>
+              <span>"What was your post-mortem process? Was it blameless?"</span>
+            </div>
+            <div class="combo-arrow">→</div>
+            <div class="combo-q">
+              <span class="combo-num">3</span>
+              <span>"What's one thing you wish was different about working here?"</span>
+            </div>
+          </div>
+          <div class="combo-why">A masterclass in cultural due diligence. Moves from technical to personal. The last question always yields the most honest answer.</div>
+        </div>
+
+        <div class="combo-card fade-in">
+          <div class="combo-label">Combo 3 — The Growth Trajectory</div>
+          <div class="combo-qs">
+            <div class="combo-q">
+              <span class="combo-num">1</span>
+              <span>"What does success look like in this role at 30, 60, and 90 days?"</span>
+            </div>
+            <div class="combo-arrow">→</div>
+            <div class="combo-q">
+              <span class="combo-num">2</span>
+              <span>"How does the engineering leveling and promotion process work?"</span>
+            </div>
+            <div class="combo-arrow">→</div>
+            <div class="combo-q">
+              <span class="combo-num">3</span>
+              <span>"What's the biggest project I could own in 12 months?"</span>
+            </div>
+          </div>
+          <div class="combo-why">Shows ambition + planning. You're not just asking about the job — you're already thinking about impact. This combo makes you memorable.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO TIPS -->
+  <section class="section tips-section" id="tips">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pro Tips</span>
+        <h2 class="section-title">Advanced tactics for <em>elite</em> candidates.</h2>
+      </div>
+      <div class="tips-list">
+
+        <div class="tip-item fade-in">
+          <div class="tip-num">01</div>
+          <div class="tip-content">
+            <h3>Tailor questions to the interviewer's role</h3>
+            <p>A CEO cares about vision. An engineer cares about code quality. A recruiter knows culture. Match the question to the person.</p>
+            <div class="tip-example">
+              <div class="tip-example-label">Example conversation:</div>
+              <div class="tip-dialogue">
+                <div class="tip-line interviewer">Interviewer (EM): "Any questions for me?"</div>
+                <div class="tip-line you">You: "How does your team's on-call burden compare to a year ago — is it improving?"</div>
+                <div class="tip-line interviewer">Interviewer: <em>[pauses, leans in] "Actually, that's something we've been actively working on…"</em></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-item fade-in">
+          <div class="tip-num">02</div>
+          <div class="tip-content">
+            <h3>Ask one question at a time — listen actively</h3>
+            <p>Don't machine-gun 5 questions at once. Ask one, listen, follow up naturally. It becomes a real conversation, not an interrogation.</p>
+          </div>
+        </div>
+
+        <div class="tip-item fade-in">
+          <div class="tip-num">03</div>
+          <div class="tip-content">
+            <h3>Reference something from the interview</h3>
+            <p>If they mentioned a challenge earlier, ask about it: <em>"You mentioned you're rebuilding the payments service — is that something I'd be involved in?"</em> Shows you were listening.</p>
+          </div>
+        </div>
+
+        <div class="tip-item fade-in">
+          <div class="tip-num">04</div>
+          <div class="tip-content">
+            <h3>Prepare 6–8 questions, expect to ask 2–3</h3>
+            <p>Some will get answered during the interview itself. Having extras ensures you're never scrambling for something to say.</p>
+          </div>
+        </div>
+
+        <div class="tip-item fade-in">
+          <div class="tip-num">05</div>
+          <div class="tip-content">
+            <h3>Note their answers — use them in your thank-you email</h3>
+            <p>Reference a specific answer in your follow-up: <em>"Your point about blameless post-mortems really resonated with me."</em> It's a powerful closing move.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">AskBack<span class="logo-dot">.</span></div>
+          <p>Turn the interview table. Ask questions that matter.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <div class="footer-col-label">Sections</div>
+            <a href="#why">Why It Matters</a>
+            <a href="#questions">All Questions</a>
+            <a href="#mistakes">Mistakes</a>
+            <a href="#combos">Smart Combos</a>
+            <a href="#tips">Pro Tips</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-label">Categories</div>
+            <a href="#questions" data-filter="role">Role & Expectations</a>
+            <a href="#questions" data-filter="system">System Design</a>
+            <a href="#questions" data-filter="engineering">Engineering</a>
+            <a href="#questions" data-filter="culture">Team & Culture</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Built for engineers who ask better questions.</span>
+        <span>© 2025 AskBack</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">Question copied!</div>
+
+  <script>
+/* ============================================================
+   AskBack — Script
+   Filter, Copy, Accordion, Theme, Search, Scroll
+   ============================================================ */
+
+'use strict';
+
+// ── THEME ──────────────────────────────────────────────────
+const html = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('.theme-icon');
+
+function getTheme() {
+  return localStorage.getItem('askback-theme') || 'dark';
+}
+
+function setTheme(t) {
+  html.setAttribute('data-theme', t);
+  themeIcon.textContent = t === 'dark' ? '☀' : '☾';
+  localStorage.setItem('askback-theme', t);
+}
+
+setTheme(getTheme());
+
+themeToggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  setTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// ── NAV SCROLL ─────────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+// ── FILTER TABS ─────────────────────────────────────────────
+const tabs = document.querySelectorAll('.tab');
+const qGroups = document.querySelectorAll('.q-group');
+const noResults = document.getElementById('noResults');
+let currentCat = 'all';
+let currentSearch = '';
+
+function applyFilters() {
+  let anyVisible = false;
+
+  qGroups.forEach(group => {
+    const cat = group.dataset.cat;
+    const catMatch = currentCat === 'all' || cat === currentCat;
+
+    if (!catMatch) {
+      group.classList.add('hidden');
+      return;
+    }
+
+    const cards = group.querySelectorAll('.q-card');
+    let groupVisible = false;
+
+    cards.forEach(card => {
+      const q = card.dataset.question?.toLowerCase() || '';
+      const why = card.querySelector('.q-card-why')?.textContent.toLowerCase() || '';
+      const searchMatch = !currentSearch || q.includes(currentSearch) || why.includes(currentSearch);
+
+      card.classList.toggle('hidden', !searchMatch);
+      if (searchMatch) groupVisible = true;
+    });
+
+    group.classList.toggle('hidden', !groupVisible);
+    if (groupVisible) anyVisible = true;
+  });
+
+  noResults.classList.toggle('hidden', anyVisible);
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentCat = tab.dataset.cat;
+    applyFilters();
+  });
+});
+
+// Footer category links
+document.querySelectorAll('[data-filter]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const cat = link.dataset.filter;
+    tabs.forEach(t => {
+      t.classList.toggle('active', t.dataset.cat === cat);
+    });
+    currentCat = cat;
+    applyFilters();
+    document.getElementById('questions').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ── GLOBAL SEARCH ───────────────────────────────────────────
+const globalSearch = document.getElementById('globalSearch');
+
+globalSearch.addEventListener('input', () => {
+  currentSearch = globalSearch.value.toLowerCase().trim();
+  // Reset category filter to 'all' on search
+  if (currentSearch) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.cat === 'all'));
+    currentCat = 'all';
+  }
+  applyFilters();
+});
+
+// Clear search on Escape
+globalSearch.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    globalSearch.value = '';
+    currentSearch = '';
+    applyFilters();
+    globalSearch.blur();
+  }
+});
+
+// ── COPY TO CLIPBOARD ───────────────────────────────────────
+const toast = document.getElementById('toast');
+let toastTimeout;
+
+function showToast(msg = 'Question copied!') {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const card = btn.closest('.q-card');
+    const question = card?.dataset.question || '';
+
+    try {
+      await navigator.clipboard.writeText(question);
+    } catch {
+      // Fallback for older browsers
+      const ta = document.createElement('textarea');
+      ta.value = question;
+      ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+
+    btn.textContent = '✓';
+    btn.classList.add('copied');
+    showToast('Question copied!');
+
+    setTimeout(() => {
+      btn.textContent = '⎘';
+      btn.classList.remove('copied');
+    }, 1800);
+  });
+});
+
+// ── ACCORDION ───────────────────────────────────────────────
+document.querySelectorAll('.expand-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.q-card');
+    const body = card.querySelector('.q-card-body');
+    const isOpen = body.classList.contains('open');
+
+    body.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    btn.textContent = isOpen ? 'Expand ↓' : 'Collapse ↑';
+  });
+});
+
+// ── FADE IN ON SCROLL ───────────────────────────────────────
+const fadeEls = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      // Stagger siblings in same parent
+      const siblings = entry.target.parentElement.querySelectorAll('.fade-in');
+      let delay = 0;
+      siblings.forEach((sib, idx) => {
+        if (sib === entry.target) delay = idx * 80;
+      });
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, Math.min(delay, 400));
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.08,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+fadeEls.forEach(el => observer.observe(el));
+
+// ── Q CARDS FADE IN ─────────────────────────────────────────
+const qCardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      qCardObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+
+document.querySelectorAll('.q-card').forEach((card, i) => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(16px)';
+  card.style.transition = `opacity 0.4s ${(i % 4) * 60}ms ease, transform 0.4s ${(i % 4) * 60}ms ease, border-color 0.22s ease, box-shadow 0.22s ease`;
+  qCardObserver.observe(card);
+});
+
+// ── SMOOTH SCROLL FOR NAV LINKS ─────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', e => {
+    if (anchor.dataset.filter) return; // handled separately
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ── KEYBOARD: / to focus search ─────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== globalSearch) {
+    e.preventDefault();
+    globalSearch.focus();
+    globalSearch.select();
+  }
+});
+
+  </script>
+</body>
+</html>
